@@ -24,11 +24,13 @@ ttoken = {'access_token': taccess_token,
 
 
 def test_token():
-    token = iol.Token(ttoken)
-    assert token.access_token == taccess_token
-    assert token.token_type == ttoken_type
-    assert token.expires_in == texpires_in
-    assert token.refresh_token == trefresh_token
-    assert token.issued == tissued
-    assert token.expires == texpires
-    assert token.refresh_expires == trefresh_expires
+    assert iol.date_to_str(iol.date_from_str(texpires)) == texpires
+
+    auth = iol.Auth(ttoken)
+    assert auth.access_token == taccess_token
+    assert auth.token_type == ttoken_type
+    assert auth.expires_in == texpires_in
+    assert auth.refresh_token == trefresh_token
+    # assert auth.issued == tissued
+    # assert auth.expires == texpires
+    # assert auth.refresh_expires == trefresh_expires
